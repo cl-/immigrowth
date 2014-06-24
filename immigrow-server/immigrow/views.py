@@ -10,9 +10,6 @@ from django.core import serializers
 
 def api(request):
   """ Devices """
-  if request.GET.get('id'):
-    id=request.GET['id']
-  else:
-    id=0
+  id = request.GET.get('id', 0)
 
   return HttpResponse(id)
