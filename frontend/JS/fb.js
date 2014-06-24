@@ -1,3 +1,66 @@
+     stateDict=
+    {
+        "Alabama": "al",
+        "Alaska": "ak",
+        "American Samoa": "as",
+        "Arizona": "az",
+        "Arkansas": "ar",
+        "California": "ca",
+        "Colorado": "co",
+        "Connecticut": "ct",
+        "Delaware": "de",
+        "District Of Columbia": "dc",
+        "Federated States Of Micronesia": "fm",
+        "Florida": "fl",
+        "Georgia": "ga",
+        "Guam": "gu",
+        "Hawaii": "hi",
+        "Idaho": "id",
+        "Illinois": "il",
+        "Indiana": "in",
+        "Iowa": "ia",
+        "Kansas": "ks",
+        "Kentucky": "ky",
+        "Louisiana": "la",
+        "Maine": "me",
+        "Marshall Islands": "mh",
+        "Maryland": "md",
+        "Massachusetts": "ma",
+        "Michigan": "mi",
+        "Minnesota": "mn",
+        "Mississippi": "ms",
+        "Missouri": "mo",
+        "Montana": "mt",
+        "Nebraska": "ne",
+        "Nevada": "nv",
+        "New Hampshire": "nh",
+        "New Jersey": "nj",
+        "New Mexico": "nm",
+        "New York": "ny",
+        "North Carolina": "nc",
+        "North Dakota": "nd",
+        "Northern Mariana Islands": "mp",
+        "Ohio": "oh",
+        "Oklahoma": "ok",
+        "Oregon": "or",
+        "Palau": "pw",
+        "Pennsylvania": "pa",
+        "Puerto Rico": "pr",
+        "Rhode Island": "ri",
+        "South Carolina": "sc",
+        "South Dakota": "sd",
+        "Tennessee": "tn",
+        "TX": "Texas",
+        "UT": "Utah",
+        "VT": "Vermont",
+        "VI": "Virgin Islands",
+        "VA": "Virginia",
+        "WA": "Washington",
+        "WV": "West Virginia",
+        "WI": "Wisconsin",
+        "WY": "Wyoming"
+    };
+
  // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -91,7 +154,26 @@ function testAPI() {
         city=arr[0];
         console.log(state);
         console.log(city);
+
+        zip_code();
+
+
     });
+}
+
+function zip_code(){
+                var url='http://api.zippopotam.us/us/'+stateDict[state]+'/'+city;
+            console.log(url);
+            jQuery.ajax({
+                 url:   url,
+                 success: function(result) {
+                    console.log(result);
+                    // jsonData = JSON.parse(result);
+                    places=result["places"];
+                    zipcode=places[0]["post code"];
+                    },
+                 async:   false
+            });
 }
 
 function fb_login(){

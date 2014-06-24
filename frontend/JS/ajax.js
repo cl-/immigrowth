@@ -4,68 +4,7 @@ function Ajax(){
 	This class handles the Ajax calls
 	*/
 
-    stateDict=
-    {
-        "Alabama": "al",
-        "Alaska": "ak",
-        "American Samoa": "as",
-        "Arizona": "az",
-        "Arkansas": "ar",
-        "California": "ca",
-        "Colorado": "co",
-        "Connecticut": "ct",
-        "Delaware": "de",
-        "District Of Columbia": "dc",
-        "Federated States Of Micronesia": "fm",
-        "Florida": "fl",
-        "Georgia": "ga",
-        "Guam": "gu",
-        "Hawaii": "hi",
-        "Idaho": "id",
-        "Illinois": "il",
-        "Indiana": "in",
-        "Iowa": "ia",
-        "Kansas": "ks",
-        "Kentucky": "ky",
-        "Louisiana": "la",
-        "Maine": "me",
-        "Marshall Islands": "mh",
-        "Maryland": "md",
-        "Massachusetts": "ma",
-        "Michigan": "mi",
-        "Minnesota": "mn",
-        "Mississippi": "ms",
-        "Missouri": "mo",
-        "Montana": "mt",
-        "Nebraska": "ne",
-        "Nevada": "nv",
-        "New Hampshire": "nh",
-        "New Jersey": "nj",
-        "New Mexico": "nm",
-        "New York": "ny",
-        "North Carolina": "nc",
-        "North Dakota": "nd",
-        "Northern Mariana Islands": "mp",
-        "Ohio": "oh",
-        "Oklahoma": "ok",
-        "Oregon": "or",
-        "Palau": "pw",
-        "Pennsylvania": "pa",
-        "Puerto Rico": "pr",
-        "Rhode Island": "ri",
-        "South Carolina": "sc",
-        "South Dakota": "sd",
-        "Tennessee": "tn",
-        "TX": "Texas",
-        "UT": "Utah",
-        "VT": "Vermont",
-        "VI": "Virgin Islands",
-        "VA": "Virginia",
-        "WA": "Washington",
-        "WV": "West Virginia",
-        "WI": "Wisconsin",
-        "WY": "Wyoming"
-    }
+
 
 	var self=this;
 
@@ -123,17 +62,6 @@ function Ajax(){
             //then we call this
             //http://api.zippopotam.us/us/ca/sunnyvale
 
-            var url='http://api.zippopotam.us/us/'+stateDict["California"]+'/'+city;
-            console.log(url);
-            jQuery.ajax({
-                 url:   url,
-                 success: function(result) {
-                                console.log(result);
-                              if(result.isOk == false)
-                                  alert(result.message);
-                          },
-                 async:   false
-            });
         })
         .fail(function() { console.log("updateTree Error"); })
 	}

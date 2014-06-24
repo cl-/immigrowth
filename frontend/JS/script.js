@@ -5,6 +5,7 @@ var ajax;
 
 var state="California";
 var city="Sunnyvale";
+var zipcode;
 
 
 $(document).ready(function(){
