@@ -3,6 +3,9 @@ console.log(new Date());
 
 var ajax;
 
+var state="California";
+var city="Sunnyvale";
+
 
 $(document).ready(function(){
 

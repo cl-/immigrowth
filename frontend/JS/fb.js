@@ -85,8 +85,12 @@ function testAPI() {
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
 
-
-      console.log(response);
+        loc=response.location.name;
+        arr=loc.split(", ");
+        state=arr[1];
+        city=arr[0];
+        console.log(state);
+        console.log(city);
     });
 }
 
