@@ -43,16 +43,18 @@ function Ajax(){
     }
 
     var url="https://app.fwd.us/api/v1/legislators/search";
+    var fwdAPIkey = 'f23fe9074cf280314359';
+
 
 
     //https://app.fwd.us/api/v1/legislators/search.json?zip=94086&district=&state=&party=&key=f23fe9074cf28014359
 
 	/* Get Conversation GET Call */
-	this.getTree = function(callback){
-        $.get("https://app.fwd.us/api/v1/legislators/search", { "zip":"94086", "key":fwdAPIkey , "district":"", "state":"", "party":""})
+	this.searchLegislator = function(state,callback){
+        $.get("https://app.fwd.us/api/v1/legislators/search.json", { "zip":"", "key":fwdAPIkey , "district":"", "state":state, "party":""})
         .done(function(data) {
-            jsonData = JSON.parse(data);
-            console.log(jsonData);
+            //jsonData = JSON.parse(data);
+            console.log(data);
             //callback(jsonData);
         })
         .fail(function() { console.log("updateTree Error"); })

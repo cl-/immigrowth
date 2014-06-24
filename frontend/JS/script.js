@@ -7,22 +7,21 @@ var ajax;
 $(document).ready(function(){
 
     ajax=new Ajax();
-   // ajax.getTree();
+    ajax.searchLegislator("CA");
 
-        var fwdAPIkey = 'f23fe9074cf28014359';
-        var fwdAPIdomain = 'staging.fwd.us';
-        var zipCode = '94107';
+    //     var fwdAPIdomain = 'staging.fwd.us';
+    //     var zipCode = '94107';
 
-        $.ajax({
-          dataType: "json",
-          url: 'https://' + fwdAPIdomain + '/api/v1/legislators/search.json',
-          data: { zip: zipCode, key: fwdAPIkey },
-          crossDomain: true,
-          timeout: 2000,
-          success: function(data) {
-            console.log(data);
-          }
-        });
+    //     $.ajax({
+    //       dataType: "json",
+    //       url: 'https://' + fwdAPIdomain + '/api/v1/legislators/search.json',
+    //       data: { zip: zipCode, key: fwdAPIkey },
+    //       crossDomain: true,
+    //       timeout: 2000,
+    //       success: function(data) {
+    //         console.log(data);
+    //       }
+    //     });
 
     //Enter Overwrite
     $('.noEnterSubmit').keypress(function(e){
