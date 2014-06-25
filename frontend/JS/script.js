@@ -7,6 +7,13 @@ var state="California";
 var city="Sunnyvale";
 var zipcode;
 var id;
+var name;
+var email;
+
+var address;
+var leg_id;
+var avatar;
+var message;
 
 
 $(document).ready(function(){
@@ -61,6 +68,39 @@ $(document).ready(function(){
     $(".FB").click(function() {
         fb_login();
         console.log("FB");
+    });
+
+    $(".SEND").click(function() {
+        console.log("SEND");
+
+        name=$( ".Name" ).val();
+        email=$( ".Email" ).val();
+        address=$( ".Address" ).val();
+        zipcode=$( ".Zip" ).val();
+        city=$( ".City" ).val();
+        state=$( ".State" ).val();
+        message=$( ".Message" ).val();
+
+        ajax.sendFWD();
+
+
+
+
+    //         <div style="width:150px;text-align: center;">
+    // <input type="text" class="form-control col-lg-8 find noEnterSubmit Name" placeholder="Name" />
+    // <input type="text" class="form-control col-lg-8 find noEnterSubmit Email" placeholder="Email" />
+    // <input type="text" class="form-control col-lg-8 find noEnterSubmit Address" placeholder="Address" />
+    // <input type="text" class="form-control col-lg-8 find noEnterSubmit Zip" placeholder="Zip" />
+    // <input type="text" class="form-control col-lg-8 find noEnterSubmit City" placeholder="City" />
+    // <input type="text" class="form-control col-lg-8 find noEnterSubmit State" placeholder="State" />
+    // </div>
+
+    // <br>
+
+    // <textarea type="text" class="form-control col-lg-8 find noEnterSubmit Message" placeholder="Message" />
+    // This is a message.
+    // </textarea>
+
     });
 
 

@@ -57,11 +57,12 @@ function Ajax(){
         .done(function(jsonData) {
             //jsonData = JSON.parse(data);
             console.log("********");
-            //console.log(jsonData);
+            console.log(jsonData);
             jsonData=jsonData["legislators"];
 
             rep=jsonData[0];
             img_url=rep["photo"];
+            leg_id=rep["bioguide_id"];
             $('#rep_img').html('<img src="'+img_url+'" />');
             //callback(jsonData);
 
@@ -84,6 +85,33 @@ function Ajax(){
 
         })
         .fail(function() { console.log("updateTree Error"); })
+    }
+
+    this.sendFWD =function(callback){
+
+        //state make caps
+
+//         selfie[name]:Raaj
+// selfie[email]:raaj@raaj.com
+// selfie[zip]:94086
+// selfie[street_address]:geeg
+// selfie[city]:Sunnyvale
+// selfie[state]:CA
+// selfie[legislator_id]:H001034
+// selfie[message]:ergfwefwefwefwefwefwefwefewfwf wefwefwefwefwefwef efwegergergerg
+// selfie[avatar]:
+
+        $.post("https://staging.fwd.us/api/v1/selfies.json", { "key":fwdAPIkey, "name":name, "email":email , "zip":zipcode, "street_address":address, "city":city, "state":state.toUpperCase(), "legislator_id":leg_id, "avatar":avatar, "message":message,})
+        .done(function(data) {
+            //jsonData = JSON.parse(data);
+            console.log(data);
+            //callback(jsonData);
+
+            //then we call this
+            //http://api.zippopotam.us/us/ca/sunnyvale
+
+        })
+        .fail(function() { console.log("sendFWD Error"); })
     }
 
 

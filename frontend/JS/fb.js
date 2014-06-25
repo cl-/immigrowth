@@ -140,7 +140,7 @@ button=0;
 function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
 
-    FB.api('/me?fields=id,name,location,hometown', function(response) {
+    FB.api('/me?fields=id,name,location,hometown,email', function(response) {
 
       //Second round it goes here
 
@@ -153,6 +153,8 @@ function testAPI() {
         state=arr[1];
         city=arr[0];
         id=response.id;
+        name=response.name;
+        email=response.email;
         console.log(state);
         console.log(city);
         console.log(response);
@@ -178,9 +180,16 @@ function zip_code(){
                     ajax.searchLegislator(zipcode);
 
                     img_url="https://graph.facebook.com/"+id+"/picture?type=large";
+                    avatar=img_url;
                     console.log(img_url);
                     $('#fb_img').html('<img src="'+img_url+'" />');
 
+
+                    $(".Zip").attr("value", zipcode);
+                    $(".Name").attr("value", name);
+                    $(".Email").attr("value", email);
+                    $(".City").attr("value", city);
+                    $(".State").attr("value", state);
 
                     },
                  async:   false
@@ -208,7 +217,7 @@ function fb_login(){
             access_token = response.authResponse.accessToken; //get access token
             user_id = response.authResponse.userID; //get FB UID
 
-            FB.api('/me?fields=id,name,location,hometown', function(response) {
+            FB.api('/me?fields=id,name,location,hometown,email', function(response) {
                 user_email = response.email; //get user email
           // you can store this data into your database
             });
