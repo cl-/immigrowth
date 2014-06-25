@@ -3,6 +3,11 @@ body, html { }
 canvas{
       }
 
+.bottom{
+border: 2px solid;
+    border-radius: 25px;
+    }
+
 .body_wrapper {
   overflow: hidden;
   margin: 0;

@@ -6,12 +6,13 @@ var ajax;
 var state="California";
 var city="Sunnyvale";
 var zipcode;
+var id;
 
 
 $(document).ready(function(){
 
     ajax=new Ajax();
-    ajax.searchLegislator("CA");
+
 
     //     var fwdAPIdomain = 'staging.fwd.us';
     //     var zipCode = '94107';

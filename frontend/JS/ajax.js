@@ -52,8 +52,28 @@ function Ajax(){
     //https://app.fwd.us/api/v1/legislators/search.json?zip=94086&district=&state=&party=&key=f23fe9074cf28014359
 
 	/* Get Conversation GET Call */
-	this.searchLegislator = function(state,callback){
-        $.get("https://app.fwd.us/api/v1/legislators/search.json", { "zip":"", "key":fwdAPIkey , "district":"", "state":state, "party":""})
+	this.searchLegislator = function(zip,callback){
+        $.get("https://app.fwd.us/api/v1/legislators/search.json", { "zip":zip, "key":fwdAPIkey , "district":"", "state":"", "party":""})
+        .done(function(jsonData) {
+            //jsonData = JSON.parse(data);
+            console.log("********");
+            //console.log(jsonData);
+            jsonData=jsonData["legislators"];
+
+            rep=jsonData[0];
+            img_url=rep["photo"];
+            $('#rep_img').html('<img src="'+img_url+'" />');
+            //callback(jsonData);
+
+            //then we call this
+            //http://api.zippopotam.us/us/ca/sunnyvale
+
+        })
+        .fail(function() { console.log("updateTree Error"); })
+	}
+
+    this.getProfilePic =function(id,size,callback){
+        $.get("https://graph.facebook.com/"+id+"/picture", { "type":size })
         .done(function(data) {
             //jsonData = JSON.parse(data);
             console.log(data);
@@ -64,10 +84,6 @@ function Ajax(){
 
         })
         .fail(function() { console.log("updateTree Error"); })
-	}
-
-    this.check =function(callback){
-
     }
 
 

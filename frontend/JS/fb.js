@@ -50,10 +50,10 @@
         "South Carolina": "sc",
         "South Dakota": "sd",
         "Tennessee": "tn",
-        "TX": "Texas",
-        "UT": "Utah",
-        "VT": "Vermont",
-        "VI": "Virgin Islands",
+        "Texas": "tx",
+        "Utah": "ut",
+        "Vermont": "vt",
+        "Virgin Islands": "vi",
         "VA": "Virginia",
         "WA": "Washington",
         "WV": "West Virginia",
@@ -152,8 +152,10 @@ function testAPI() {
         arr=loc.split(", ");
         state=arr[1];
         city=arr[0];
+        id=response.id;
         console.log(state);
         console.log(city);
+        console.log(response);
 
         zip_code();
 
@@ -171,6 +173,15 @@ function zip_code(){
                     // jsonData = JSON.parse(result);
                     places=result["places"];
                     zipcode=places[0]["post code"];
+                    console.log("ZIPCODE SET** : "+zipcode);
+
+                    ajax.searchLegislator(zipcode);
+
+                    img_url="https://graph.facebook.com/"+id+"/picture?type=large";
+                    console.log(img_url);
+                    $('#fb_img').html('<img src="'+img_url+'" />');
+
+
                     },
                  async:   false
             });
