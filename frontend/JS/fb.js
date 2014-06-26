@@ -183,6 +183,7 @@ function zip_code(){
                     avatar=img_url;
                     ajax.getB64Img(img_url);
                     console.log(img_url);
+                    ajax.getB64Img(img_url);
                     $('#fb_img').html('<img src="'+img_url+'" />');
 
 
@@ -191,6 +192,8 @@ function zip_code(){
                     $(".Email").attr("value", email);
                     $(".City").attr("value", city);
                     $(".State").attr("value", state);
+
+                    $(".Address").attr("value", "Sample Address goes here");
 
                     },
                  async:   false
