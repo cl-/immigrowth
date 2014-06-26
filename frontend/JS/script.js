@@ -109,6 +109,17 @@ $( ".Zip" )
         state=$( ".State" ).val();
         message=$( ".Message" ).val();
 
+        if(state.length>2){
+            state=stateDict[state].toUpperCase();
+        }
+
+        // if(leg_id==""){
+
+        //     alert("No valid zip code");
+        //     return;
+        // }
+
+
         ajax.sendFWD();
 
         // var canvas = document.getElementById('fb_img');

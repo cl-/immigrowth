@@ -64,6 +64,7 @@ function Ajax(){
             rep=jsonData[0];
             img_url=rep["photo"];
             leg_id=rep["id"];
+            console.log(leg_id);
             $('#rep_img').html('<img src="'+img_url+'" />');
             //callback(jsonData);
 
@@ -163,13 +164,21 @@ function Ajax(){
             //jsonData = JSON.parse(data);
             console.log("SELFIE SUCCESS");
             console.log(data);
+
+            alert("Your selfie was sent!");
             //callback(jsonData);
 
             //then we call this
             //http://api.zippopotam.us/us/ca/sunnyvale
 
         })
-        .fail(function() { console.log("sendFWD Error"); })
+        .fail(function() {
+
+            console.log("sendFWD Error");
+            alert("One of your fields has an issue");
+
+
+        })
 
         console.log(name);
         console.log(email);
@@ -204,13 +213,15 @@ function Ajax(){
             //jsonData = JSON.parse(data);
             console.log("LETTERS SUCCESS");
             console.log(data);
+
+            alert("Your letter was sent!");
             //callback(jsonData);
 
             //then we call this
             //http://api.zippopotam.us/us/ca/sunnyvale
 
         })
-        .fail(function() { console.log("sendFWD Error"); })
+        .fail(function() { console.log("sendFWD Error"); alert("One of your fields has an issue"); })
     }
 
 
