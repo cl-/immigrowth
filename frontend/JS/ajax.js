@@ -137,6 +137,8 @@ function Ajax(){
 // selfie[message]:ergfwefwefwefwefwefwefwefewfwf wefwefwefwefwefwef efwegergergerg
 // selfie[avatar]:
 
+    console.log(state);
+
 
 
         $.ajax({
@@ -150,7 +152,7 @@ function Ajax(){
                 "selfie[zip]":zipcode,
                 "selfie[street_address]":address,
                 "selfie[city]":city,
-                "selfie[state]":stateDict[state].toUpperCase(),
+                "selfie[state]":state.toUpperCase(),
                 "selfie[legislator_id]":leg_id,
                 "selfie[avatar]":avatar,
                 "selfie[message]":$('.Message').val()},
@@ -169,6 +171,15 @@ function Ajax(){
         })
         .fail(function() { console.log("sendFWD Error"); })
 
+        console.log(name);
+        console.log(email);
+        console.log(zipcode);
+        console.log(address);
+        console.log(city);
+        console.log(state);
+        console.log(leg_id);
+        console.log($('.Writing').val());
+
 
         $.ajax({
             dataType: 'json',
@@ -181,7 +192,7 @@ function Ajax(){
                 "letter[zip]":zipcode,
                 "letter[street_address]":address,
                 "letter[city]":city,
-                "letter[state]":stateDict[state].toUpperCase(),
+                "letter[state]":state.toUpperCase(),
                 "letter[legislator_id]":leg_id,
                 "letter[shareable]":false,
                 "letter[writing]":$('.Writing').val()},
