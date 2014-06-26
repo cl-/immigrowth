@@ -151,6 +151,21 @@ $( ".Zip" )
             state=stateDict[state].toUpperCase();
         }
 
+        if(zipcode.length<5){
+            alert("zip invalid");
+            return;
+        }
+
+        if(zipcode.length<5){
+            alert("zip invalid");
+            return;
+        }
+
+        if(avatar=='data:image/png;base64,'){
+            alert("image invalid");
+            return;
+        }
+
         // if(leg_id==""){
 
         //     alert("No valid zip code");
