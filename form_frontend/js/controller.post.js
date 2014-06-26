@@ -6,7 +6,7 @@ var fwdAPIdomain = 'staging.fwd.us';
 var zipCode = '94107';
 
 var responseData = {
-  legislators = [];
+  legislators: [],
   
 };
 
