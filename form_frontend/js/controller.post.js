@@ -14,7 +14,7 @@ var responseData = {
 //Demo - http://studiomoh.com/work/fwd.us/api/findrep.html
 function get_legislator(){ //get_rep
   $.ajax({
-    dataType: "json",
+    dataType: "jsonpp",
     url: 'https://' + fwdAPIdomain + '/api/v1/legislators/search.json',
     data: { zip: zipCode, key: fwdAPIkey },
     crossDomain: true,

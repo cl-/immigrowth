@@ -1,44 +1,45 @@
 function Ajax(){
 
-	/*
-	This class handles the Ajax calls
-	*/
+    /*
+    This class handles the Ajax calls
+    */
 
 
 
-	var self=this;
+    var self=this;
+    var leg_id;
 
     var MyRequestsCompleted = (function() {
-	    var numRequestToComplete,
-	        requestsCompleted,
-	        callBacks,
-	        singleCallBack;
-	    return function(options) {
-	        if (!options) options = {};
+        var numRequestToComplete,
+            requestsCompleted,
+            callBacks,
+            singleCallBack;
+        return function(options) {
+            if (!options) options = {};
 
-	        numRequestToComplete = options.numRequest || 0;
-	        requestsCompleted = options.requestsCompleted || 0;
-	        callBacks = [];
-	        var fireCallbacks = function () {
-	           	stopSpinner();
-	            for (var i = 0; i < callBacks.length; i++) callBacks[i]();
-	        };
-	        if (options.singleCallback) callBacks.push(options.singleCallback);
+            numRequestToComplete = options.numRequest || 0;
+            requestsCompleted = options.requestsCompleted || 0;
+            callBacks = [];
+            var fireCallbacks = function () {
+                stopSpinner();
+                for (var i = 0; i < callBacks.length; i++) callBacks[i]();
+            };
+            if (options.singleCallback) callBacks.push(options.singleCallback);
 
-	        this.addCallbackToQueue = function(isComplete, callback) {
-	            if (isComplete) requestsCompleted++;
-	            if (callback) callBacks.push(callback);
-	            if (requestsCompleted == numRequestToComplete) fireCallbacks();
-	        };
-	        this.requestComplete = function(isComplete) {
-	            if (isComplete) requestsCompleted++;
-	            if (requestsCompleted == numRequestToComplete) fireCallbacks();
-	        };
-	        this.setCallback = function(callback) {
-	            callBacks.push(callBack);
-	        };
-	    };
-	})();
+            this.addCallbackToQueue = function(isComplete, callback) {
+                if (isComplete) requestsCompleted++;
+                if (callback) callBacks.push(callback);
+                if (requestsCompleted == numRequestToComplete) fireCallbacks();
+            };
+            this.requestComplete = function(isComplete) {
+                if (isComplete) requestsCompleted++;
+                if (requestsCompleted == numRequestToComplete) fireCallbacks();
+            };
+            this.setCallback = function(callback) {
+                callBacks.push(callBack);
+            };
+        };
+    })();
 
     function drawChart() {
 
@@ -51,8 +52,8 @@ function Ajax(){
 
     //https://app.fwd.us/api/v1/legislators/search.json?zip=94086&district=&state=&party=&key=f23fe9074cf28014359
 
-	/* Get Conversation GET Call */
-	this.searchLegislator = function(zip,callback){
+    /* Get Conversation GET Call */
+    this.searchLegislator = function(zip,callback){
         $.get("https://app.fwd.us/api/v1/legislators/search.json", { "zip":zip, "key":fwdAPIkey , "district":"", "state":"", "party":""})
         .done(function(jsonData) {
             //jsonData = JSON.parse(data);
@@ -62,7 +63,7 @@ function Ajax(){
 
             rep=jsonData[0];
             img_url=rep["photo"];
-            leg_id=rep["bioguide_id"];
+            leg_id=rep["id"];
             $('#rep_img').html('<img src="'+img_url+'" />');
             //callback(jsonData);
 
@@ -71,7 +72,7 @@ function Ajax(){
 
         })
         .fail(function() { console.log("updateTree Error"); })
-	}
+    }
 
     this.getProfilePic =function(id,size,callback){
         $.get("https://graph.facebook.com/"+id+"/picture", { "type":size })
@@ -101,7 +102,24 @@ function Ajax(){
 // selfie[message]:ergfwefwefwefwefwefwefwefewfwf wefwefwefwefwefwef efwegergergerg
 // selfie[avatar]:
 
-        $.post("https://staging.fwd.us/api/v1/selfies.json", { "key":fwdAPIkey, "name":name, "email":email , "zip":zipcode, "street_address":address, "city":city, "state":state.toUpperCase(), "legislator_id":leg_id, "avatar":avatar, "message":message,})
+        $.ajax({
+            dataType: 'json',
+            type: 'post',
+            url: "https://app.fwd.us/api/v1/selfies.json", 
+            data: { 
+                "key":fwdAPIkey, 
+                "selfie[name]":name,
+                "selfie[email]":email,
+                "selfie[zip]":zipcode,
+                "selfie[street_address]":address, 
+                "selfie[city]":city, 
+                "selfie[state]":stateDict[state].toUpperCase(), 
+                "selfie[legislator_id]":leg_id, 
+                "selfie[avatar]":avatar, 
+                "selfie[message]":$('.Message').val()},
+            crossDomain: true,
+
+        })
         .done(function(data) {
             //jsonData = JSON.parse(data);
             console.log(data);
