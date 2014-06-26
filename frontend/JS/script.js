@@ -16,6 +16,8 @@ var avatar;
 var message;
 var img_data;
 
+avatar='data:image/png;base64,' + "";
+
 function getBase64Image(imgElem) {
 // imgElem must be on the same server otherwise a cross-origin error will be thrown "SECURITY_ERR: DOM Exception 18"
     var canvas = document.createElement("canvas");
@@ -63,6 +65,20 @@ $(document).ready(function(){
     $(".PS").click(function() {
       console.log("PS");
     });
+
+$( ".Zip" )
+  .focusout(function() {
+    console.log("A");
+
+    zipcode=$( ".Zip" ).val();
+    ajax.searchLegislator(zipcode);
+
+  })
+  .blur(function() {
+    zipcode=$( ".Zip" ).val();
+    ajax.searchLegislator(zipcode);
+    console.log("B");
+  });
 
     jQuery.fn.extend({
       disable: function(state) {
