@@ -2,7 +2,7 @@
 
 ### FROM CLIENT, not server
 ### scp -r FOLDER_LOCATION deployer@pledge4liberty.org:~/scp_transfer
-ssh deployer@pledge4liberty.org
+ssh ubuntu@pledge4liberty.org
 
 # When On Server
 cd ~/scp_transfer
