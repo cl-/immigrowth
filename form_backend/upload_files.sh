@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+ssh ubuntu@pledge4liberty.org
 cd ~/immigrowth/frontend
 git pull
 sudo cp -r ~/immigrowth/frontend/* /var/www/html
