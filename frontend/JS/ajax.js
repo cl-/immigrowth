@@ -88,6 +88,41 @@ function Ajax(){
         .fail(function() { console.log("updateTree Error"); })
     }
 
+    this.getB64Img =function(url,callback){
+        // $.get(url, { })
+        // .done(function(data) {
+        //     //jsonData = JSON.parse(data);
+        //     console.log("**");
+        //     avatar=data;
+        //     //callback(jsonData);
+
+        //     //then we call this
+        //     //http://api.zippopotam.us/us/ca/sunnyvale
+
+        // })
+        // .fail(function() { console.log("getB64Img Error"); })
+
+
+
+                $.ajax({
+            dataType: 'text',
+            type: 'get',
+            url: url,
+            data: {
+                },
+            crossDomain: true,
+
+        })
+        .done(function(data) {
+            //jsonData = JSON.parse(data);
+            console.log("IMAGE SUCCESS");
+            avatar='data:image/png;base64,' + data;
+
+        })
+        .fail(function() { console.log("IMAGE Error"); })
+
+    }
+
     this.sendFWD =function(callback){
 
         //state make caps
@@ -102,26 +137,61 @@ function Ajax(){
 // selfie[message]:ergfwefwefwefwefwefwefwefewfwf wefwefwefwefwefwef efwegergergerg
 // selfie[avatar]:
 
+
+
         $.ajax({
             dataType: 'json',
             type: 'post',
-            url: "https://app.fwd.us/api/v1/selfies.json", 
-            data: { 
-                "key":fwdAPIkey, 
+            url: "https://app.fwd.us/api/v1/selfies.json",
+            data: {
+                "key":fwdAPIkey,
                 "selfie[name]":name,
                 "selfie[email]":email,
                 "selfie[zip]":zipcode,
-                "selfie[street_address]":address, 
-                "selfie[city]":city, 
-                "selfie[state]":stateDict[state].toUpperCase(), 
-                "selfie[legislator_id]":leg_id, 
-                "selfie[avatar]":avatar, 
+                "selfie[street_address]":address,
+                "selfie[city]":city,
+                "selfie[state]":stateDict[state].toUpperCase(),
+                "selfie[legislator_id]":leg_id,
+                "selfie[avatar]":avatar,
                 "selfie[message]":$('.Message').val()},
             crossDomain: true,
 
         })
         .done(function(data) {
             //jsonData = JSON.parse(data);
+            console.log("SELFIE SUCCESS");
+            console.log(data);
+            //callback(jsonData);
+
+            //then we call this
+            //http://api.zippopotam.us/us/ca/sunnyvale
+
+        })
+        .fail(function() { console.log("sendFWD Error"); })
+
+
+        $.ajax({
+            dataType: 'json',
+            type: 'post',
+            url: "https://app.fwd.us/api/v1/letters.json",
+            data: {
+                "key":fwdAPIkey,
+                "letter[name]":name,
+                "letter[email]":email,
+                "letter[zip]":zipcode,
+                "letter[street_address]":address,
+                "letter[city]":city,
+                "letter[state]":stateDict[state].toUpperCase(),
+                "letter[legislator_id]":leg_id,
+                "letter[shareable]":false,
+                "letter[writing]":$('.Writing').val()},
+
+            crossDomain: true,
+
+        })
+        .done(function(data) {
+            //jsonData = JSON.parse(data);
+            console.log("LETTERS SUCCESS");
             console.log(data);
             //callback(jsonData);
 
