@@ -14,6 +14,18 @@ var address;
 var leg_id;
 var avatar;
 var message;
+var img_data;
+
+function getBase64Image(imgElem) {
+// imgElem must be on the same server otherwise a cross-origin error will be thrown "SECURITY_ERR: DOM Exception 18"
+    var canvas = document.createElement("canvas");
+    canvas.width = imgElem.clientWidth;
+    canvas.height = imgElem.clientHeight;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(imgElem, 0, 0);
+    var dataURL = canvas.toDataURL("image/png");
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+}
 
 
 $(document).ready(function(){
@@ -83,7 +95,13 @@ $(document).ready(function(){
 
         ajax.sendFWD();
 
+        // var canvas = document.getElementById('fb_img');
+        // console.log(canvas);
+        // var imageData  = canvas.toDataURL("image/png");
+        //imgData = JSON.stringify(getBase64Image(imgElem));
 
+
+        //console.log(imgElem);
 
 
     //         <div style="width:150px;text-align: center;">

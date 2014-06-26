@@ -62,7 +62,7 @@ function Ajax(){
 
             rep=jsonData[0];
             img_url=rep["photo"];
-            leg_id=rep["bioguide_id"];
+            leg_id=rep["id"];
             $('#rep_img').html('<img src="'+img_url+'" />');
             //callback(jsonData);
 
@@ -77,6 +77,7 @@ function Ajax(){
         $.get("https://graph.facebook.com/"+id+"/picture", { "type":size })
         .done(function(data) {
             //jsonData = JSON.parse(data);
+
             console.log(data);
             //callback(jsonData);
 
@@ -87,21 +88,40 @@ function Ajax(){
         .fail(function() { console.log("updateTree Error"); })
     }
 
+    this.getB64Img =function(url,callback){
+        $.get(url, { })
+        .done(function(data) {
+            //jsonData = JSON.parse(data);
+            console.log("**");
+            img_data=data;
+            //callback(jsonData);
+
+            //then we call this
+            //http://api.zippopotam.us/us/ca/sunnyvale
+
+        })
+        .fail(function() { console.log("getB64Img Error"); })
+    }
+
     this.sendFWD =function(callback){
 
-        //state make caps
+        state=stateDict[state];
+        state=state.toUpperCase();
 
-//         selfie[name]:Raaj
-// selfie[email]:raaj@raaj.com
-// selfie[zip]:94086
-// selfie[street_address]:geeg
-// selfie[city]:Sunnyvale
-// selfie[state]:CA
-// selfie[legislator_id]:H001034
-// selfie[message]:ergfwefwefwefwefwefwefwefewfwf wefwefwefwefwefwef efwegergergerg
-// selfie[avatar]:
+        console.log("SENDING::");
+        console.log(fwdAPIkey);
+        console.log(name);
+        console.log(email);
+        console.log(zipcode);
+        console.log(address);
 
-        $.post("https://staging.fwd.us/api/v1/selfies.json", { "key":fwdAPIkey, "name":name, "email":email , "zip":zipcode, "street_address":address, "city":city, "state":state.toUpperCase(), "legislator_id":leg_id, "avatar":avatar, "message":message,})
+        console.log(city);
+        console.log(state);
+        console.log(leg_id);
+        console.log(message);
+        console.log(img_data);
+
+        $.post("http://staging.fwd.us/api/v1/selfies.json", { "key":fwdAPIkey, "name":name, "email":email , "zip":zipcode, "street_address":address, "city":city, "state":state, "legislator_id":leg_id, "avatar":img_data, "message":message,})
         .done(function(data) {
             //jsonData = JSON.parse(data);
             console.log(data);

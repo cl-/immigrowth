@@ -181,6 +181,7 @@ function zip_code(){
 
                     img_url="https://graph.facebook.com/"+id+"/picture?type=large";
                     avatar=img_url;
+                    ajax.getB64Img(img_url);
                     console.log(img_url);
                     $('#fb_img').html('<img src="'+img_url+'" />');
 
